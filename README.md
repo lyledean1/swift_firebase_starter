@@ -2,6 +2,12 @@
 
 This is a ready-to-use starter template for building iOS applications with Firebase integration. It includes authentication, Firestore database connections, and basic UI components to help you get started quickly.
 
+<p align="center">
+ <img src="https://github.com/user-attachments/assets/18c807f9-cc60-4bf8-8466-e7e3cb47f393" width="200">
+ <img src="https://github.com/user-attachments/assets/64b35e1c-1025-4f98-99e1-88a4fdc84aef" width="200">
+ <img src="https://github.com/user-attachments/assets/90c614bc-c145-415c-b337-ed58c3c42af8" width="200">
+</p>
+
 ## Features
 
 - Firebase Authentication (sign up, sign in, sign out for Google + Apple Sign In)
