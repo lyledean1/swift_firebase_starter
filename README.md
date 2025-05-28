@@ -4,7 +4,7 @@ This is a ready-to-use starter template for building iOS applications with Fireb
 
 ## Features
 
-- Firebase Authentication (sign up, sign in, sign out)
+- Firebase Authentication (sign up, sign in, sign out for Google + Apple Sign In)
 - Firestore database integration
 - Profile management
 - SwiftUI-based user interface
@@ -37,12 +37,16 @@ This is a ready-to-use starter template for building iOS applications with Fireb
    - In Xcode, select the project in the Project Navigator
    - Select the main target under "TARGETS"
    - In the "General" tab, update the "Bundle Identifier" to match exactly what you registered in Firebase
+   <img width="658" alt="Screenshot 2025-05-28 at 21 06 41" src="https://github.com/user-attachments/assets/45d9d30e-4ac0-48b2-b8ed-d9609c951ee7" />
+
 
 4. **Download and add the GoogleService-Info.plist**
    - Download the `GoogleService-Info.plist` file from your Firebase project
    - Drag and drop it into your Xcode project
    - Make sure "Copy items if needed" is checked
    - Add it to your main target
+<img width="267" alt="Screenshot 2025-05-28 at 21 02 28" src="https://github.com/user-attachments/assets/10f1d769-653b-40d5-9f24-16eb8491a615" />
+
 
 5. **Configure Firebase in the app**
    - The app is already set up to initialize Firebase in the `firebase_starterApp.swift` file
