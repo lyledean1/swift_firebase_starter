@@ -9,45 +9,38 @@ import Firebase
 import FirebaseFirestore
 import Foundation
 
+// example user data
 struct UserOverviewData: Codable {
-    let linked_strava: Bool
-    let last_seven_days: [String: Double]
-    let last_thirty_days: [String: Double]
-    let last_ninety_days: [String: Double]
+    let enabled: Bool
+    let values: [String: Double]
+
 
 
     // First, define the coding keys
     enum CodingKeys: String, CodingKey {
-        case linked_strava
-        case last_seven_days
-        case last_thirty_days
-        case last_ninety_days
+        case enabled
+        case values
     }
 
     // Add custom init decoder
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        linked_strava = try container.decodeIfPresent(Bool.self, forKey: .linked_strava) ?? false
-        let lastSevenDays = try container.decodeIfPresent([String: Double].self, forKey: .last_seven_days) ?? [:]
-        let lastThirtyDays = try container.decodeIfPresent([String: Double].self, forKey: .last_thirty_days) ?? [:]
-        let lastNinetyDays = try container.decodeIfPresent([String: Double].self, forKey: .last_ninety_days) ?? [:]
-        self.last_seven_days = lastSevenDays
-        self.last_thirty_days = lastThirtyDays
-        self.last_ninety_days = lastNinetyDays
+        enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? false
+        let values = try container.decodeIfPresent([String: Double].self, forKey: .values) ?? [:]
+        self.values = values
     }
 
     // Add regular initializer
-    init(linked_strava: Bool = false) {
-        self.linked_strava = linked_strava
-        self.last_ninety_days = [:]
-        self.last_seven_days = [:]
-        self.last_thirty_days = [:]
+    init(enabled: Bool = false) {
+        self.enabled = enabled
+        self.values = [:]
+
     }
 
     // Add encode method to complete Codable conformance
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(linked_strava, forKey: .linked_strava)
+        try container.encode(enabled, forKey: .enabled)
     }
 }
 
@@ -79,8 +72,8 @@ class FirestoreViewModel: ObservableObject {
         userSummary = try await UserOverviewData.fetchUserSummaryFromFirestore(userId: userId)
     }
 
-    func setUserData(userId: String, linkedStrava: Bool) async throws {
-        let data = UserOverviewData(linked_strava: linkedStrava)
+    func setUserData(userId: String, enabled: Bool) async throws {
+        let data = UserOverviewData(enabled: enabled)
         try await data.saveToFirestore(userId: userId)
         userSummary = data
     }
